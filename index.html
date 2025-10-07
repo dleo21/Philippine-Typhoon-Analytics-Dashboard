@@ -1,25 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Philippine Typhoon Analytics Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0a0a12;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .dashboard {
+      max-width: 800px;
+      width: 100%;
+    }
+    .title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background-color: #1b1b31;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px;
+      width: 100%;
+      max-width: 45%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-content h2 {
+      margin: 0 0 10px 0;
+      padding: 10px;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 9999px;
+      background: linear-gradient(to right, #00f0ff, #ff00f5);
+      color: #0a0a12;
+      display: inline-block;
+    }
+    .chart-container {
+      width: 100%;
+      max-width: 700px;
+    }
+    @media (max-width: 768px) {
+      .card {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1 class="title">Philippine Typhoon Analytics Dashboard</h1>
+    <div class="cards">
+      <div class="card">
+        <div class="card-content">
+          <h2>Current Typhoon</h2>
+          <p id="current-typhoon-name">Fetching...</p>
+          <p id="current-typhoon-location">Location: Fetching...</p>
+          <p id="current-typhoon-strength">Strength: Fetching...</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <h2>Historical Typhoons</h2>
+          <ul id="historical-typhoons">
+            <li>Loading historical data...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="chart-container">
+      nvas id="d="typhoonChart"></canvas>
+    </div>
+  </div>
 
-<div class="dashboard">
-  <h1 class="title">Philippine Typhoon Analytics Dashboard</h1>
-  <div class="cards">
-    <div class="card">
-      <div class="card-content">
-        <h2 class="text-lg font-bold rounded-full bg-gradient-to-r from-[#00f0ff] to-[#ff00f5] text-[#0a0a12]">Current Typhoon</h2>
-        <p id="current-typhoon-name">Fetching...</p>
-        <p id="current-typhoon-location">Location: Fetching...</p>
-        <p id="current-typhoon-strength">Strength: Fetching...</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        <h2 class="text-lg font-bold rounded-full bg-gradient-to-r from-[#00f0ff] to-[#ff00f5] text-[#0a0a12]">Historical Typhoons</h2>
-        <ul id="historical-typhoons">
-          <li>Loading historical data...</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="chart-container">
-    <canvas id="typhoonChart"></canvas>
-  </div>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchCurrentTyphoonData();
+      fetchHistoricalTyphoonData();
+      setupChart();
+    });
+
+    function fetchCurrentTyphoonData() {
+      // Placeholder example - replace with real API call or scraping method
+      const currentTyphoon = {
+        name: "Typhoon Velma",
+        location: "Eastern Visayas",
+        strength: "120 km/h"
+      };
+      document.getElementById('current-typhoon-name').textContent = currentTyphoon.name;
+      document.getElementById('current-typhoon-location').textContent = `Location: ${currentTyphoon.location}`;
+      document.getElementById('current-typhoon-strength').textContent = `Strength: ${currentTyphoon.strength}`;
+    }
+
+    function fetchHistoricalTyphoonData() {
+      // Placeholder example - replace with real API call or scraping method
+      const historicalData = [
+        { name: 'Typhoon Rammasun', month: 'July', strength: '140 km/h' },
+        { name: 'Typhoon Haiyan', month: 'November', strength: '235 km/h' }
+      ];
+      const list = document.getElementById('historical-typhoons');
+      list.innerHTML = '';
+      historicalData.forEach(typhoon => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${typhoon.name}: ${typhoon.month} - ${typhoon.strength}`;
+        list.appendChild(listItem);
+      });
+    }
+
+    function setupChart() {
+      const ctx = document.getElementById('typhoonChart').getContext('2d');
+      const typhoonChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datasets: [{
+            label: 'Number of Typhoons',
+            data: [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+            backgroundColor: 'rgba(0, 240, 255, 0.2)',
+            borderColor: '#00f0ff',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#fff' }
+            },
+            x: {
+              ticks: { color: '#fff' }
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
