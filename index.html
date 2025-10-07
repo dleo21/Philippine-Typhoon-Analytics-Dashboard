@@ -1,0 +1,25 @@
+
+<div class="dashboard">
+  <h1 class="title">Philippine Typhoon Analytics Dashboard</h1>
+  <div class="cards">
+    <div class="card">
+      <div class="card-content">
+        <h2 class="text-lg font-bold rounded-full bg-gradient-to-r from-[#00f0ff] to-[#ff00f5] text-[#0a0a12]">Current Typhoon</h2>
+        <p id="current-typhoon-name">Fetching...</p>
+        <p id="current-typhoon-location">Location: Fetching...</p>
+        <p id="current-typhoon-strength">Strength: Fetching...</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <h2 class="text-lg font-bold rounded-full bg-gradient-to-r from-[#00f0ff] to-[#ff00f5] text-[#0a0a12]">Historical Typhoons</h2>
+        <ul id="historical-typhoons">
+          <li>Loading historical data...</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="chart-container">
+    <canvas id="typhoonChart"></canvas>
+  </div>
+</div>
