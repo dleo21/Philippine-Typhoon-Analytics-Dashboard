@@ -1,6 +1,4 @@
-# AI Generated App
-
-This application was generated using AI.
+he Philippine-Typhoon-Analytics-Dashboard is web-based application designed to provide real-time monitoring and analytical insights into typhoon activity affecting the Philippines. Its primary objective is to offer a user-friendly, accessible platform for visualizing typhoon data, enabling timely awareness and preparedness among stakeholders including government agencies, researchers, and the public.
 
 ## Files
 
@@ -8,6 +6,4 @@ This application was generated using AI.
 - `styles.css` - Styling
 - `script.js` - JavaScript functionality
 
-## Usage
 
-Open `index.html` in a web browser to view the application.
